@@ -85,36 +85,34 @@
   .seal svg{display:block;}
 
   /* hero */
-  .hero{background:var(--forest-deep);color:#fff;position:relative;overflow:hidden;padding:64px 0 0;}
+  .hero{background:linear-gradient(135deg,#F7FBF8 0%,#EAF6EE 55%,#FFFFFF 100%);color:var(--ink);position:relative;overflow:hidden;padding:64px 0 0;}
   .hero::before{
     content:"";position:absolute;inset:0;
-    background-image:
-      linear-gradient(rgba(10,32,24,0.86),rgba(10,32,24,0.92)),
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 34px);
+    background:radial-gradient(ellipse at 82% 28%, rgba(46,125,70,0.12), transparent 62%);
     z-index:0;
   }
   .hero-inner{position:relative;z-index:1;}
   .hero-grid{display:grid;grid-template-columns:1.3fr 0.85fr;gap:40px;align-items:center;padding-bottom:52px;}
   @media (max-width:860px){.hero-grid{grid-template-columns:1fr;}}
-  .hero h1{color:#fff;font-size:clamp(32px,4.6vw,50px);line-height:1.1;margin-top:18px;}
-  .hero p.lede{font-size:16.5px;line-height:1.65;color:#CFE0D6;max-width:46ch;margin-top:20px;}
+  .hero h1{color:var(--forest-deep);font-size:clamp(32px,4.6vw,50px);line-height:1.1;margin-top:18px;}
+  .hero p.lede{font-size:16.5px;line-height:1.65;color:var(--ink-soft);max-width:46ch;margin-top:20px;}
   .hero-cta{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;}
-  .hero .btn-line{border-color:rgba(255,255,255,0.4);color:#fff;}
-  .hero .btn-line:hover{background:rgba(255,255,255,0.1);box-shadow:0 8px 20px rgba(0,0,0,0.25);transform:translateY(-1px);}
+  .hero .btn-line{border-color:rgba(18,56,41,0.35);color:var(--forest-deep);}
+  .hero .btn-line:hover{background:rgba(18,56,41,0.06);box-shadow:0 8px 20px rgba(18,56,41,0.12);transform:translateY(-1px);}
   .hero-stamp{display:flex;justify-content:center;align-items:center;}
-  .hero-illus{width:min(430px,100%);filter:drop-shadow(0 18px 34px rgba(0,0,0,0.32));}
+  .hero-illus{width:min(430px,100%);filter:drop-shadow(0 20px 40px rgba(18,56,41,0.16));}
   .hero-illus svg{display:block;width:100%;height:auto;}
   @media (max-width:860px){.hero-illus{width:min(320px,72%);margin:0 auto;}}
-  .stats-strip{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);}
+  .stats-strip{position:relative;z-index:1;border-top:1px solid rgba(18,56,41,0.1);background:rgba(255,255,255,0.55);}
   .stats-strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:32px 32px;}
   @media (max-width:760px){.stats-strip .wrap{grid-template-columns:repeat(2,1fr);row-gap:28px;}}
   .stat{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:0 24px;position:relative;}
   .stat:first-child{padding-left:0;}
-  .stat:not(:first-child)::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:rgba(255,255,255,0.14);}
+  .stat:not(:first-child)::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:rgba(18,56,41,0.14);}
   @media (max-width:760px){.stat:not(:first-child)::before{display:none;} .stat{padding:0;}}
-  .stat .stat-icon{opacity:0.75;}
-  .stat b{font-family:'Fraunces',serif;font-size:30px;font-weight:700;color:#fff;display:block;letter-spacing:-0.01em;}
-  .stat span{font-size:11px;font-weight:400;color:#9FB6AC;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;}
+  .stat .stat-icon{opacity:0.85;}
+  .stat b{font-family:'Fraunces',serif;font-size:30px;font-weight:700;color:var(--forest-deep);display:block;letter-spacing:-0.01em;}
+  .stat span{font-size:11px;font-weight:400;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;}
 
   section{padding:64px 0;}
   .divider{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
@@ -173,6 +171,40 @@
     font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:11px;letter-spacing:0.02em;line-height:1.1;padding:2px;
   }
   .audit-badge .lbl{font-size:11.5px;color:var(--ink-soft);line-height:1.32;}
+  .audit-badge{cursor:pointer;}
+  .audit-badge:focus-visible .tile{outline:2px solid var(--gold);outline-offset:2px;}
+
+  .audit-modal-overlay{
+    position:fixed;inset:0;background:rgba(10,32,24,0.55);backdrop-filter:blur(3px);
+    display:flex;align-items:center;justify-content:center;padding:20px;z-index:200;
+    opacity:0;visibility:hidden;transition:opacity .28s ease, visibility 0s linear .28s;
+  }
+  .audit-modal-overlay.open{opacity:1;visibility:visible;transition:opacity .28s ease;}
+  .audit-modal{
+    background:#fff;border-radius:18px;max-width:480px;width:100%;max-height:86vh;overflow-y:auto;
+    padding:32px 30px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,0.3);
+    transform:translateY(16px) scale(0.98);transition:transform .28s ease;
+  }
+  .audit-modal-overlay.open .audit-modal{transform:translateY(0) scale(1);}
+  .audit-modal-close{
+    position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
+    border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:background .2s ease, border-color .2s ease;
+  }
+  .audit-modal-close:hover{background:var(--panel);border-color:var(--gold);}
+  .audit-modal .am-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  .audit-modal h3{font-size:21px;font-weight:700;margin:8px 0 14px;padding-right:24px;line-height:1.25;}
+  .audit-modal .am-desc{font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0 0 20px;}
+  .audit-modal .am-key-label{font-size:11.5px;font-weight:700;color:var(--forest-deep);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+  .audit-modal ul{list-style:none;margin:0 0 24px;padding:0;}
+  .audit-modal li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.5;}
+  .audit-modal li .tick{flex-shrink:0;width:17px;height:17px;border-radius:50%;background:#E4F2E8;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .audit-modal-cta{
+    background:var(--panel);border-radius:12px;padding:16px 18px;display:flex;
+    align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .audit-modal-cta p{font-size:13.5px;font-weight:600;color:var(--forest-deep);margin:0;}
+  @media (max-width:480px){.audit-modal{padding:26px 22px;} .audit-modal-cta{flex-direction:column;align-items:flex-start;}}
   .audit-badge.buyer .tile{border:1.5px solid var(--forest);background:#fff;}
   .panel-note{font-size:12px;color:var(--ink-soft);margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);}
 
@@ -231,7 +263,7 @@
   .sc-footnote p{font-size:11.5px;color:var(--ink-soft);font-style:italic;line-height:1.5;margin:0;max-width:26ch;}
 
   /* why us */
-  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:36px;}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px;}
   @media (max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:520px){.why-grid{grid-template-columns:1fr;}}
   .why-card{
@@ -244,16 +276,70 @@
   .why-card h4{font-size:14.5px;font-family:'Inter',sans-serif;font-weight:700;color:var(--forest-deep);margin-bottom:9px;line-height:1.3;}
   .why-card p{font-size:13px;color:var(--ink-soft);line-height:1.6;margin:0;}
 
-  .value-strip{background:var(--navy);color:#fff;}
-  .value-strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:48px 32px;}
-  @media (max-width:700px){.value-strip .wrap{grid-template-columns:1fr;}}
-  .process-step{padding:22px 20px;border-radius:14px;transition:transform .28s ease, box-shadow .28s ease, background .28s ease;}
-  .process-step:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,0.22);background:rgba(255,255,255,0.04);}
-  .process-step .vnum{
-    font-family:'IBM Plex Mono',monospace;color:var(--gold-soft);font-size:13px;font-weight:600;letter-spacing:0.06em;
-    display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;
-    border:1.5px solid rgba(239,225,196,0.4);margin-bottom:16px;
+  .workflow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px;}
+  @media (max-width:980px){.workflow-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:620px){.workflow-grid{grid-template-columns:1fr;}}
+  .workflow-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;
+    box-shadow:0 4px 18px rgba(18,56,41,0.05);
+    transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
+  .workflow-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(18,56,41,0.1);border-color:#2E7D46;}
+  .workflow-card .wf-num{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;color:var(--forest-deep);
+    width:34px;height:34px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;
+    margin-bottom:14px;
+  }
+  .workflow-card h4{font-size:15px;font-weight:700;color:var(--forest-deep);margin:0 0 8px;text-transform:uppercase;letter-spacing:0.02em;}
+  .workflow-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:0;}
+
+  .process-v2{background:linear-gradient(135deg,#F7FBF8 0%,#EAF6EE 100%);}
+  .process-v2-track{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px;}
+  @media (max-width:900px){.process-v2-track{grid-template-columns:1fr;gap:0;}}
+  .process-v2-item{position:relative;padding:0 8px;text-align:center;}
+  @media (min-width:901px){
+    .process-v2-item:not(:last-child)::after{
+      content:"";position:absolute;top:28px;left:calc(50% + 34px);right:calc(-50% + 34px);height:2px;
+      background:repeating-linear-gradient(90deg, rgba(18,56,41,0.3) 0 6px, transparent 6px 12px);
+    }
+  }
+  @media (max-width:900px){
+    .process-v2-item{display:flex;align-items:flex-start;gap:16px;text-align:left;padding:0 4px 34px;}
+    .process-v2-item:last-child{padding-bottom:0;}
+    .process-v2-item:not(:last-child)::after{
+      content:"";position:absolute;top:56px;bottom:-34px;left:27px;width:2px;
+      background:repeating-linear-gradient(180deg, rgba(18,56,41,0.3) 0 6px, transparent 6px 12px);
+    }
+    .process-v2-icon{margin:0 !important;flex-shrink:0;}
+    .process-v2-card{flex:1;text-align:left;}
+  }
+  .process-v2-icon{
+    width:56px;height:56px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--forest) 0%,#2E7D46 100%);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+    box-shadow:0 8px 20px rgba(18,56,41,0.22);position:relative;z-index:1;
+  }
+  .process-v2-icon .pv2-num{
+    position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;
+    background:#fff;border:2px solid var(--gold);color:var(--forest-deep);
+    font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .process-v2-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;
+    box-shadow:0 4px 16px rgba(18,56,41,0.05);
+    transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  }
+  .process-v2-item:hover .process-v2-card{transform:translateY(-4px);box-shadow:0 12px 26px rgba(18,56,41,0.1);border-color:#2E7D46;}
+  .process-v2-card h4{font-size:14px;font-weight:700;color:var(--forest-deep);margin:0 0 8px;line-height:1.3;}
+  .process-v2-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.55;margin:0;}
+
+  .cta-band{background:linear-gradient(135deg,#EAF6EE 0%,#DCEFE2 100%);text-align:center;}
+  .cta-band .sec-title{margin:0 auto;}
+  .cta-band p.cta-sub{color:var(--ink-soft);max-width:56ch;margin:14px auto 0;font-size:15px;line-height:1.65;}
+  .cta-band .hero-cta{justify-content:center;margin:30px auto 0;}
+  .cta-band .btn-line{border-color:rgba(18,56,41,0.3);color:var(--forest-deep);}
+  .cta-band .btn-line:hover{background:rgba(18,56,41,0.06);}
   .value-strip h4{color:#fff;font-size:16.5px;margin-bottom:9px;font-family:'Inter',sans-serif;font-weight:700;line-height:1.3;}
   .value-strip p{color:#C7D3E2;font-size:13.5px;line-height:1.6;margin:0;}
 
@@ -279,6 +365,15 @@
   .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 16px;padding-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;}
   @media (max-width:600px){.foot-bottom{flex-direction:column;text-align:center;padding-top:16px;}}
 
+  .copyright-bar{background:var(--forest-deep);border-top:1px solid rgba(239,225,196,0.18);padding:16px 0;}
+  .copyright-bar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 20px;}
+  .copyright-bar p{margin:0;font-size:11.5px;color:#9FB6AC;line-height:1.5;}
+  .copyright-bar .cr-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+  .copyright-bar .cr-links a{font-size:11.5px;color:#9FB6AC;text-decoration:none;transition:color .28s ease;}
+  .copyright-bar .cr-links a:hover{color:#fff;}
+  .copyright-bar .cr-links span{color:rgba(159,182,172,0.4);}
+  @media (max-width:600px){.copyright-bar .wrap{flex-direction:column;text-align:center;}}
+
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .35s ease, transform .35s ease;}
   .reveal.in{opacity:1;transform:translateY(0);}
   @media (prefers-reduced-motion:reduce){ .reveal{transition:none;opacity:1;transform:none;} }
@@ -299,7 +394,7 @@
       <div class="seal">
         <img src="assets/FMS_LOGO.png" alt="Factual Management Systems logo" width="50" height="50" style="display:block;border-radius:50%;">
       </div>
-      <div class="brand-name">Factual Management Systems<span>Audit, compliance &amp; certification</span></div>
+      <div class="brand-name">Factual Management Systems<span>Compliance &amp; Certification Audits, Legal RequirementS</span></div>
     </div>
     <nav>
       <a href="#compliance" class="hide-mobile">Compliance audits</a>
@@ -323,19 +418,19 @@
   <div class="hero-inner">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Pan-India · Social compliance &amp; certification body liaison</p>
-        <h1>Independent audit and certification support, wherever your factories are.</h1>
-        <p class="lede">Factual Management Systems prepares manufacturers across India for buyer and social compliance audits, statutory legal certification, environmental testing, and factory waste documentation — one accountable point of contact from application to closure.</p>
+        <p class="eyebrow">Compliance • Audits • Certification Support</p>
+        <h1>Compliance That Keeps Your Business Ready.</h1>
+        <p class="lede">Factual Management Systems supports manufacturers with compliance audits, legal requirements, certification support, environmental coordination and buyer audit readiness.</p>
         <div class="hero-cta">
-          <a href="#compliance" class="btn btn-solid">View our audits</a>
-          <a href="#contact" class="btn btn-line">Talk to our team</a>
+          <a href="#compliance" class="btn btn-solid">Explore Our Services</a>
+          <a href="#contact" class="btn btn-line">Talk to Our Team</a>
         </div>
       </div>
       <div class="hero-stamp">
         <div class="hero-illus">
           <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="14" y="14" width="432" height="432" rx="26" fill="rgba(255,255,255,0.045)" stroke="rgba(239,225,196,0.35)" stroke-width="1.5"/>
-            <g stroke="rgba(239,225,196,0.28)" stroke-width="1" stroke-dasharray="3 6">
+            <rect x="14" y="14" width="432" height="432" rx="26" fill="rgba(255,255,255,0.65)" stroke="rgba(18,56,41,0.15)" stroke-width="1.5"/>
+            <g stroke="rgba(18,56,41,0.2)" stroke-width="1" stroke-dasharray="3 6">
               <line x1="230" y1="230" x2="120" y2="120"/>
               <line x1="230" y1="230" x2="340" y2="120"/>
               <line x1="230" y1="230" x2="120" y2="340"/>
@@ -343,8 +438,8 @@
             </g>
 
             <!-- Certificate, top-left -->
-            <g transform="translate(58,54)" stroke="#EFE1C4" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round">
-              <rect x="0" y="0" width="112" height="82" rx="6" fill="rgba(239,225,196,0.06)"/>
+            <g transform="translate(58,54)" stroke="#123829" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round">
+              <rect x="0" y="0" width="112" height="82" rx="6" fill="rgba(18,56,41,0.05)"/>
               <line x1="16" y1="20" x2="80" y2="20"/>
               <line x1="16" y1="34" x2="96" y2="34"/>
               <line x1="16" y1="48" x2="70" y2="48"/>
@@ -352,14 +447,14 @@
             </g>
 
             <!-- Shield with check, top-right -->
-            <g transform="translate(300,48)" stroke="#EFE1C4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round">
-              <path d="M52 0 L100 16 L100 60 C100 92 78 112 52 122 C26 112 4 92 4 60 L4 16 Z" fill="rgba(239,225,196,0.06)"/>
+            <g transform="translate(300,48)" stroke="#123829" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M52 0 L100 16 L100 60 C100 92 78 112 52 122 C26 112 4 92 4 60 L4 16 Z" fill="rgba(18,56,41,0.05)"/>
               <path d="M28 62 L45 80 L78 40" stroke="#8FBE9E" stroke-width="6"/>
             </g>
 
             <!-- Factory, bottom-left -->
-            <g transform="translate(40,272)" stroke="#EFE1C4" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round">
-              <path d="M0 96 L0 46 L34 66 L34 30 L64 50 L64 20 L96 42 L96 96 Z" fill="rgba(239,225,196,0.06)"/>
+            <g transform="translate(40,272)" stroke="#123829" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M0 96 L0 46 L34 66 L34 30 L64 50 L64 20 L96 42 L96 96 Z" fill="rgba(18,56,41,0.05)"/>
               <line x1="16" y1="70" x2="16" y2="82"/>
               <line x1="40" y1="70" x2="40" y2="82"/>
               <line x1="64" y1="70" x2="64" y2="82"/>
@@ -367,9 +462,9 @@
             </g>
 
             <!-- Clipboard / checklist, bottom-right -->
-            <g transform="translate(292,268)" stroke="#EFE1C4" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round">
-              <rect x="0" y="10" width="82" height="100" rx="8" fill="rgba(239,225,196,0.06)"/>
-              <rect x="24" y="0" width="34" height="14" rx="4" fill="#0A2018" stroke="#EFE1C4"/>
+            <g transform="translate(292,268)" stroke="#123829" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round">
+              <rect x="0" y="10" width="82" height="100" rx="8" fill="rgba(18,56,41,0.05)"/>
+              <rect x="24" y="0" width="34" height="14" rx="4" fill="#FFFFFF" stroke="#123829"/>
               <path d="M14 40 L20 46 L30 34" stroke="#8FBE9E" stroke-width="2.4"/>
               <line x1="38" y1="40" x2="68" y2="40"/>
               <path d="M14 62 L20 68 L30 56" stroke="#8FBE9E" stroke-width="2.4"/>
@@ -382,7 +477,7 @@
             <path d="M216 228 L224 236 L242 216" stroke="#FFFDF8" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
             <!-- FMS logo, pinned bottom-right corner -->
-            <circle cx="406" cy="406" r="35" fill="#0A2018" stroke="#EFE1C4" stroke-width="1.5"/>
+            <circle cx="406" cy="406" r="35" fill="#FFFFFF" stroke="#123829" stroke-width="1.5"/>
             <clipPath id="fmsClip"><circle cx="406" cy="406" r="30"/></clipPath>
             <image href="assets/FMS_LOGO.png" x="376" y="376" width="60" height="60" clip-path="url(#fmsClip)" opacity="0.8"/>
           </svg>
@@ -392,10 +487,10 @@
   </div>
   <div class="stats-strip">
     <div class="wrap">
-      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EFE1C4" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><b>14+</b><span>certification standards</span></div>
-      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EFE1C4" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 4v5"/></svg><b>9+</b><span>buyer audit programs</span></div>
-      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EFE1C4" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><b>40+</b><span>legal &amp; environmental reports</span></div>
-      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EFE1C4" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg><b>Pan-India</b><span>client coverage</span></div>
+      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><b>14+</b><span>certification standards</span></div>
+      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 4v5"/></svg><b>9+</b><span>buyer audit programs</span></div>
+      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><b>40+</b><span>legal &amp; environmental reports</span></div>
+      <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg><b>Pan-India</b><span>client coverage</span></div>
     </div>
   </div>
 </section>
@@ -442,17 +537,17 @@
         </div>
         <span class="cap">Evaluate labour practices, worker welfare, health &amp; safety, legal compliance, and ethical business practices.</span>
         <div class="badge-grid">
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/sedex.png" alt="SEDEX / SMETA logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">SMETA</div></div><div class="lbl">SEDEX / SMETA</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/bsci.png" alt="amfori BSCI logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">BSCI</div></div><div class="lbl">amfori BSCI</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/sa8000.png" alt="SA8000 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">SA8K</div></div><div class="lbl">SA8000</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/wrap.png" alt="WRAP logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">WRAP</div></div><div class="lbl">WRAP</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/slcp.png" alt="SLCP logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">SLCP</div></div><div class="lbl">SLCP</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/wca.png" alt="WCA logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">WCA</div></div><div class="lbl">WCA</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/ics.png" alt="ICS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">ICS</div></div><div class="lbl">ICS</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/rba.png" alt="RBA logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RBA</div></div><div class="lbl">RBA</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/disney-ils.png" alt="Disney ILS Audit logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">ILS</div></div><div class="lbl">Disney ILS Audit</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/fairtrade.png" alt="Fair Trade Social Audit logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">FT</div></div><div class="lbl">Fair Trade Social Audit</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/coc.png" alt="Buyer Code of Conduct (CoC) Audits logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">CoC</div></div><div class="lbl">Buyer Code of Conduct (CoC) Audits</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('sedex')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('sedex')}"><div class="tile"><img src="assets/logos/sedex.png" alt="SEDEX / SMETA logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">SMETA</div></div><div class="lbl">SEDEX / SMETA</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('bsci')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('bsci')}"><div class="tile"><img src="assets/logos/bsci.png" alt="amfori BSCI logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">BSCI</div></div><div class="lbl">amfori BSCI</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('sa8000')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('sa8000')}"><div class="tile"><img src="assets/logos/sa8000.png" alt="SA8000 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">SA8K</div></div><div class="lbl">SA8000</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('wrap')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('wrap')}"><div class="tile"><img src="assets/logos/wrap.png" alt="WRAP logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">WRAP</div></div><div class="lbl">WRAP</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('slcp')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('slcp')}"><div class="tile"><img src="assets/logos/slcp.png" alt="SLCP logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">SLCP</div></div><div class="lbl">SLCP</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('wca')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('wca')}"><div class="tile"><img src="assets/logos/wca.png" alt="WCA logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">WCA</div></div><div class="lbl">WCA</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('ics')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('ics')}"><div class="tile"><img src="assets/logos/ics.png" alt="ICS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">ICS</div></div><div class="lbl">ICS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('rba')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('rba')}"><div class="tile"><img src="assets/logos/rba.png" alt="RBA logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RBA</div></div><div class="lbl">RBA</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('disney_ils')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('disney_ils')}"><div class="tile"><img src="assets/logos/disney-ils.png" alt="Disney ILS Audit logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">ILS</div></div><div class="lbl">Disney ILS Audit</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('fairtrade')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('fairtrade')}"><div class="tile"><img src="assets/logos/fairtrade.png" alt="Fair Trade Social Audit logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">FT</div></div><div class="lbl">Fair Trade Social Audit</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('coc')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('coc')}"><div class="tile"><img src="assets/logos/coc.png" alt="Buyer Code of Conduct (CoC) Audits logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">CoC</div></div><div class="lbl">Buyer Code of Conduct (CoC) Audits</div></div>
         </div>
       </div>
       <div class="panel reveal">
@@ -462,16 +557,16 @@
         </div>
         <span class="cap">Sustainable sourcing, material traceability, and textile certification requirements.</span>
         <div class="badge-grid">
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/gots.png" alt="GOTS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">GOTS</div></div><div class="lbl">GOTS</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/ocs.png" alt="OCS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">OCS</div></div><div class="lbl">OCS</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/grs.png" alt="GRS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">GRS</div></div><div class="lbl">GRS</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/rcs.png" alt="RCS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RCS</div></div><div class="lbl">RCS</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/rws.png" alt="RWS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RWS</div></div><div class="lbl">RWS</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/raf.png" alt="RAF logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RAF</div></div><div class="lbl">RAF</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/fsc.png" alt="FSC logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">FSC</div></div><div class="lbl">FSC</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/pefc.png" alt="PEFC logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">PEFC</div></div><div class="lbl">PEFC</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/ccs.png" alt="CCS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">CCS</div></div><div class="lbl">CCS</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/rms.png" alt="RMS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RMS</div></div><div class="lbl">RMS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('gots')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('gots')}"><div class="tile"><img src="assets/logos/gots.png" alt="GOTS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">GOTS</div></div><div class="lbl">GOTS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('ocs')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('ocs')}"><div class="tile"><img src="assets/logos/ocs.png" alt="OCS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">OCS</div></div><div class="lbl">OCS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('grs')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('grs')}"><div class="tile"><img src="assets/logos/grs.png" alt="GRS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">GRS</div></div><div class="lbl">GRS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('rcs')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('rcs')}"><div class="tile"><img src="assets/logos/rcs.png" alt="RCS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RCS</div></div><div class="lbl">RCS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('rws')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('rws')}"><div class="tile"><img src="assets/logos/rws.png" alt="RWS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RWS</div></div><div class="lbl">RWS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('raf')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('raf')}"><div class="tile"><img src="assets/logos/raf.png" alt="RAF logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RAF</div></div><div class="lbl">RAF</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('fsc')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('fsc')}"><div class="tile"><img src="assets/logos/fsc.png" alt="FSC logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">FSC</div></div><div class="lbl">FSC</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('pefc')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('pefc')}"><div class="tile"><img src="assets/logos/pefc.png" alt="PEFC logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">PEFC</div></div><div class="lbl">PEFC</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('ccs')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('ccs')}"><div class="tile"><img src="assets/logos/ccs.png" alt="CCS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">CCS</div></div><div class="lbl">CCS</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('rms')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('rms')}"><div class="tile"><img src="assets/logos/rms.png" alt="RMS logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">RMS</div></div><div class="lbl">RMS</div></div>
         </div>
       </div>
       <div class="panel reveal">
@@ -481,15 +576,15 @@
         </div>
         <span class="cap">Product integrity, environmental management, and certified management systems.</span>
         <div class="badge-grid">
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/iso9001.png" alt="ISO 9001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">9001</div></div><div class="lbl">ISO 9001</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/iso14001.png" alt="ISO 14001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">14001</div></div><div class="lbl">ISO 14001</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/iso45001.png" alt="ISO 45001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">45001</div></div><div class="lbl">ISO 45001</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/iso50001.png" alt="ISO 50001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">50001</div></div><div class="lbl">ISO 50001</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/higg-fem.png" alt="Higg FEM logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">HIGG</div></div><div class="lbl">Higg FEM</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/zdhc.png" alt="ZDHC Assessment logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">ZDHC</div></div><div class="lbl">ZDHC Assessment</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/oekotex.png" alt="OEKO-TEX logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">OEKO</div></div><div class="lbl">OEKO-TEX</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/bci.png" alt="Better Cotton (BCI) logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">BCI</div></div><div class="lbl">Better Cotton (BCI)</div></div>
-          <div class="audit-badge"><div class="tile"><img src="assets/logos/ctpat.png" alt="C-TPAT logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">CTPAT</div></div><div class="lbl">C-TPAT</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('iso9001')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('iso9001')}"><div class="tile"><img src="assets/logos/iso9001.png" alt="ISO 9001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">9001</div></div><div class="lbl">ISO 9001</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('iso14001')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('iso14001')}"><div class="tile"><img src="assets/logos/iso14001.png" alt="ISO 14001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">14001</div></div><div class="lbl">ISO 14001</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('iso45001')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('iso45001')}"><div class="tile"><img src="assets/logos/iso45001.png" alt="ISO 45001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">45001</div></div><div class="lbl">ISO 45001</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('iso50001')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('iso50001')}"><div class="tile"><img src="assets/logos/iso50001.png" alt="ISO 50001 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">50001</div></div><div class="lbl">ISO 50001</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('higg_fem')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('higg_fem')}"><div class="tile"><img src="assets/logos/higg-fem.png" alt="Higg FEM logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">HIGG</div></div><div class="lbl">Higg FEM</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('zdhc')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('zdhc')}"><div class="tile"><img src="assets/logos/zdhc.png" alt="ZDHC Assessment logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">ZDHC</div></div><div class="lbl">ZDHC Assessment</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('oekotex')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('oekotex')}"><div class="tile"><img src="assets/logos/oekotex.png" alt="OEKO-TEX logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">OEKO</div></div><div class="lbl">OEKO-TEX</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('bci')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('bci')}"><div class="tile"><img src="assets/logos/bci.png" alt="Better Cotton (BCI) logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">BCI</div></div><div class="lbl">Better Cotton (BCI)</div></div>
+          <div class="audit-badge" role="button" tabindex="0" onclick="openAuditModal('ctpat')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditModal('ctpat')}"><div class="tile"><img src="assets/logos/ctpat.png" alt="C-TPAT logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="mono">CTPAT</div></div><div class="lbl">C-TPAT</div></div>
         </div>
       </div>
     </div>
@@ -614,49 +709,150 @@
 
 <section>
   <div class="wrap">
-    <div class="divider"><span class="num">WHY US</span><hr></div>
-    <h2 class="sec-title">Why manufacturers work with us</h2>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg></div>
-        <h4>Pan-India coverage</h4>
-        <p>One team taking on assignments at factories across every state we serve, not limited to any single region.</p>
+    <div class="divider"><span class="num">HOW WE WORK</span><hr></div>
+    <h2 class="sec-title">How Manufacturers Work With Us</h2>
+    <p class="sec-sub">Our process from the first conversation to closed-out documentation.</p>
+    <div class="workflow-grid">
+      <div class="workflow-card reveal">
+        <div class="wf-num">01</div>
+        <h4>Audit Date Confirmed</h4>
+        <p>We first understand the requirement and fix the audit date according to the client&rsquo;s timeline.</p>
       </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v6"/></svg></div>
-        <h4>Single window</h4>
-        <p>Compliance audits, legal certification, and environmental testing coordinated by one office instead of several vendors.</p>
+      <div class="workflow-card reveal">
+        <div class="wf-num">02</div>
+        <h4>Documents Prepared</h4>
+        <p>Once the audit is scheduled, we quickly prepare and organize the required documents, records and evidence.</p>
       </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
-        <h4>Buyer-ready documentation</h4>
-        <p>Paperwork prepared to the format and detail buyer audit teams expect, standard by standard.</p>
+      <div class="workflow-card reveal">
+        <div class="wf-num">03</div>
+        <h4>Audit Readiness</h4>
+        <p>We review the factory&rsquo;s compliance status and identify gaps before the audit so the team is properly prepared.</p>
       </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3.6 2.5-6 5.5-6s5.5 2.4 5.5 6"/><path d="M16 5.5a3 3 0 010 6"/><path d="M18.5 14c2 .4 3.5 2.4 3.5 6"/></svg></div>
-        <h4>One accountable contact</h4>
-        <p>A named coordinator follows your file from scheduling through to certificate closure.</p>
+      <div class="workflow-card reveal">
+        <div class="wf-num">04</div>
+        <h4>Smooth Audit Coordination</h4>
+        <p>We coordinate the audit process and support the factory team throughout the audit to keep the process organized and smooth.</p>
+      </div>
+      <div class="workflow-card reveal">
+        <div class="wf-num">05</div>
+        <h4>Time-Bound Compliance Support</h4>
+        <p>We manage documentation, follow-ups and corrective actions with clear timelines to avoid unnecessary delays.</p>
+      </div>
+      <div class="workflow-card reveal">
+        <div class="wf-num">06</div>
+        <h4>Legal Certificates</h4>
+        <p>We coordinate required legal certificates and compliance documents and provide valid documentation within the agreed timeline.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="value-strip">
+<section class="process-v2">
   <div class="wrap">
-    <div class="process-step">
-      <span class="vnum">01</span>
-      <h4>Consult</h4>
-      <p>We review which standards, certificates, or reports your buyer or authority requires.</p>
+    <div class="divider"><span class="num">OUR PROCESS</span><hr></div>
+    <h2 class="sec-title">How We Work With You</h2>
+    <p class="sec-sub">Five steps from your first enquiry to a smoothly closed-out audit.</p>
+    <div class="process-v2-track">
+      <div class="process-v2-item reveal">
+        <div class="process-v2-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3"/><path d="M3 20c0-3.3 2.2-5.5 5-5.5s5 2.2 5 5.5"/><path d="M14 4h6v5h-2l-2 2v-2h-2z"/></svg>
+          <span class="pv2-num">01</span>
+        </div>
+        <div class="process-v2-card">
+          <h4>Audit Consulting &amp; Planning</h4>
+          <p>You reach out and book audit consulting support. We understand your company, factory operations, applicable standards, buyer requirements and audit scope.</p>
+        </div>
+      </div>
+      <div class="process-v2-item reveal">
+        <div class="process-v2-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V11l4 3V9l4 3V7l4 3V6l4 3v11H3z"/><circle cx="18" cy="7" r="3"/><path d="M20.2 9.2L22 11"/></svg>
+          <span class="pv2-num">02</span>
+        </div>
+        <div class="process-v2-card">
+          <h4>Factory Visit &amp; Gap Discussion</h4>
+          <p>Our team visits the factory and reviews conditions with management &mdash; health &amp; safety, legal compliance, documentation and workplace practices &mdash; flagging areas that need improvement.</p>
+        </div>
+      </div>
+      <div class="process-v2-item reveal">
+        <div class="process-v2-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>
+          <span class="pv2-num">03</span>
+        </div>
+        <div class="process-v2-card">
+          <h4>Legal Compliance &amp; Required Certifications</h4>
+          <p>Based on the factory requirements, we coordinate and support the client in obtaining the required legal certificates, statutory documents, testing reports, approvals, and other applicable legal compliance requirements.</p>
+        </div>
+      </div>
+      <div class="process-v2-item reveal">
+        <div class="process-v2-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h2M13 14h3M8 17h2"/></svg>
+          <span class="pv2-num">04</span>
+        </div>
+        <div class="process-v2-card">
+          <h4>Audit Date &amp; Documentation Preparation</h4>
+          <p>We coordinate the audit schedule and prepare documentation in advance &mdash; records, policies, procedures, registers and training records &mdash; organized and ready on time.</p>
+        </div>
+      </div>
+      <div class="process-v2-item reveal">
+        <div class="process-v2-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="16" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg>
+          <span class="pv2-num">05</span>
+        </div>
+        <div class="process-v2-card">
+          <h4>Audit Support &amp; Closure</h4>
+          <p>We support you throughout the audit, coordinate with the factory team, help address observations, and support corrective action through to smooth closure.</p>
+        </div>
+      </div>
     </div>
-    <div class="process-step">
-      <span class="vnum">02</span>
-      <h4>Coordinate</h4>
-      <p>Audits, tests, and inspections are scheduled at your facility, anywhere in India.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="divider"><span class="num">WHY US</span><hr></div>
+    <h2 class="sec-title">Why work with us</h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <h4>Fast Document Preparation</h4>
+        <p>Required documents, records and evidence are organized quickly once an audit is scheduled.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h4>Clear Timeline Management</h4>
+        <p>Every audit date, submission and follow-up is tracked against a clear, agreed timeline.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>Audit Readiness Support</h4>
+        <p>Compliance gaps are reviewed and flagged before the audit so the factory team is properly prepared.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div>
+        <h4>Smooth Audit Coordination</h4>
+        <p>We coordinate the audit process and support the factory team throughout, to keep things organized.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg></div>
+        <h4>Legal Compliance Support</h4>
+        <p>Statutory certificates and compliance documents are coordinated alongside your audit requirements.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="6" y="4" width="12" height="16" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg></div>
+        <h4>Valid Documentation</h4>
+        <p>valid documentation is provided within the timeline agreed with you.</p>
+      </div>
     </div>
-    <div class="process-step">
-      <span class="vnum">03</span>
-      <h4>Certify</h4>
-      <p>Reports and certificates are closed out and handed over in buyer or authority-ready format.</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2 class="sec-title">Preparing for an Audit or Compliance Requirement?</h2>
+    <p class="cta-sub">Let our team help you organize the requirements, documentation and coordination from start to finish.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-solid">Talk to Our Team</a>
+      <a href="#contact" class="btn btn-line">Send an Enquiry</a>
     </div>
   </div>
 </section>
@@ -707,7 +903,7 @@
           <img src="assets/FMS_LOGO.png" alt="Factual Management Systems logo" width="38" height="38" style="border-radius:50%;flex-shrink:0;">
           <h5 style="margin:0;">Factual Management Systems</h5>
         </div>
-        <p>Audit, compliance, and certification consulting for manufacturers across India.</p>
+        <p>Legal Requirements, Compliance &amp; Certification Audits for manufacturers across India.</p>
       </div>
       <div class="foot-col">
         <h5>Services</h5>
@@ -719,8 +915,10 @@
       <div class="foot-col">
         <h5>Contact</h5>
         <a href="https://factualmanagementsystems.com">factualmanagementsystems.com</a>
+        <a href="mailto:factualmanagementsystems@gmail.com">factualmanagementsystems@gmail.com</a>
         <a href="mailto:delipkannan@gmail.com">delipkannan@gmail.com</a>
         <a href="tel:+919965368928">+91 99653 68928</a>
+        <a href="tel:+919944734898">+91 99447 34898</a>
         <address>No.100, 2nd Floor RK Towers, Annupparpalayam Pudhur, Tiruppur – 641652</address>
       </div>
     </div>
@@ -730,6 +928,34 @@
     </div>
   </div>
 </footer>
+
+<div class="copyright-bar">
+  <div class="wrap">
+    <p>&copy; <span id="crYear"></span> Factual Management Systems. All Rights Reserved. &mdash; Legal Requirements, Compliance &amp; Certification Audits</p>
+    <div class="cr-links">
+      <a href="#">Privacy Policy</a><span>|</span>
+      <a href="#">Terms &amp; Conditions</a><span>|</span>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<div class="audit-modal-overlay" id="auditModalOverlay" onclick="if(event.target===this)closeAuditModal()">
+  <div class="audit-modal" role="dialog" aria-modal="true" aria-labelledby="amTitle">
+    <button class="audit-modal-close" aria-label="Close" onclick="closeAuditModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+    <span class="am-eyebrow">Certification / Audit</span>
+    <h3 id="amTitle"></h3>
+    <p class="am-desc" id="amDesc"></p>
+    <div class="am-key-label">Key Areas</div>
+    <ul id="amPoints"></ul>
+    <div class="audit-modal-cta">
+      <p id="amCtaText">Need support with this audit?</p>
+      <a href="#contact" class="btn btn-solid" onclick="closeAuditModal()">Talk to FMS</a>
+    </div>
+  </div>
+</div>
 
 <script>
   const els = document.querySelectorAll('.reveal');
@@ -748,8 +974,62 @@
     const btn = document.querySelector('.nav-toggle');
     if(btn) btn.setAttribute('aria-expanded','false');
   }
+
+  const AUDIT_DATA = {
+    sedex: { name: "SEDEX / SMETA", desc: "A widely used social compliance audit methodology (2-Pillar or 4-Pillar) covering labour standards, health & safety, environmental practices and business ethics.", points: ["Labour &amp; human rights", "Health &amp; safety", "Environmental practices", "Business ethics", "Working hours &amp; wages"] },
+    bsci: { name: "amfori BSCI", desc: "A social compliance monitoring system used by international buyers to assess working conditions across supply chains.", points: ["Workers&rsquo; rights", "Fair remuneration", "Occupational health &amp; safety", "Environmental protection", "Ethical business behaviour"] },
+    sa8000: { name: "SA8000", desc: "An international certifiable social accountability standard covering workplace conditions and workers&rsquo; rights, aligned with ILO conventions.", points: ["Child &amp; forced labour safeguards", "Health &amp; safety", "Freedom of association", "Working hours &amp; compensation", "Management systems"] },
+    wrap: { name: "WRAP", desc: "A certification program focused on lawful, humane and ethical manufacturing, primarily used in apparel and footwear supply chains.", points: ["Compliance with laws", "Prohibition of forced/child labour", "Health &amp; safety", "Environmental compliance", "Customs compliance"] },
+    slcp: { name: "SLCP", desc: "A shared assessment framework that allows one social &amp; labour audit to be reused across multiple buyers, reducing audit duplication.", points: ["Convergence across buyer programs", "Labour rights", "Health &amp; safety", "Standardised data collection"] },
+    wca: { name: "WCA (Workplace Conditions Assessment)", desc: "An entry-level social compliance assessment used to evaluate baseline labour and safety conditions in a facility.", points: ["Labour standards", "Health &amp; safety", "Wages &amp; working hours", "Management systems"] },
+    ics: { name: "ICS Social Audit", desc: "A social audit framework used mainly by French and European retailers to evaluate supplier labour practices.", points: ["Working conditions", "Health &amp; safety", "Labour rights", "Compliance with local law"] },
+    rba: { name: "RBA (Responsible Business Alliance)", desc: "A code of conduct widely used in electronics and manufacturing supply chains covering labour, health &amp; safety, environment and ethics.", points: ["Labour", "Health &amp; safety", "Environment", "Ethics", "Management systems"] },
+    disney_ils: { name: "Disney ILS Audit", desc: "Disney&rsquo;s International Labor Standards audit, required for facilities manufacturing Disney-licensed products.", points: ["Labour standards", "Health &amp; safety", "Environmental compliance", "Facility &amp; subcontractor disclosure"] },
+    fairtrade: { name: "Fair Trade Social Audit", desc: "An audit verifying fair trade principles including fair wages, safe working conditions and community benefit.", points: ["Fair wages &amp; pricing", "Working conditions", "Environmental practices", "Community development"] },
+    coc: { name: "Buyer Code of Conduct (CoC) Audits", desc: "Custom audits conducted against an individual retailer&rsquo;s own code of conduct and supplier requirements.", points: ["Buyer-specific labour standards", "Health &amp; safety", "Environmental requirements", "Documentation review"] },
+    gots: { name: "GOTS", desc: "Global Organic Textile Standard &mdash; certifies the organic status of textiles from harvesting through environmentally and socially responsible processing.", points: ["Organic fibre content", "Chemical restrictions", "Environmental management", "Social criteria"] },
+    ocs: { name: "OCS", desc: "Organic Content Standard &mdash; verifies the organic material content of a product through the supply chain.", points: ["Chain of custody", "Organic fibre verification", "Transaction certificates"] },
+    grs: { name: "GRS", desc: "Global Recycled Standard &mdash; verifies recycled content and tracks it through the supply chain, with social and environmental criteria.", points: ["Recycled content verification", "Chain of custody", "Social &amp; environmental practices", "Chemical restrictions"] },
+    rcs: { name: "RCS", desc: "Recycled Claim Standard &mdash; verifies recycled input material and traces it through production.", points: ["Recycled content verification", "Chain of custody tracking"] },
+    rws: { name: "RWS", desc: "Responsible Wool Standard &mdash; certifies wool from farms that meet animal welfare and land management requirements.", points: ["Animal welfare", "Land management", "Chain of custody"] },
+    raf: { name: "RAF", desc: "A responsible sourcing standard covering animal welfare and traceability requirements for animal-derived fibres.", points: ["Animal welfare", "Traceability", "Farm-level practices"] },
+    fsc: { name: "FSC", desc: "Forest Stewardship Council &mdash; certifies responsibly sourced wood, paper and forest-based materials.", points: ["Responsible forestry", "Chain of custody", "Sustainable sourcing"] },
+    pefc: { name: "PEFC", desc: "Programme for the Endorsement of Forest Certification &mdash; verifies sustainably managed forest sources for wood-based materials.", points: ["Sustainable forestry", "Chain of custody"] },
+    ccs: { name: "Textile Exchange CCS", desc: "Content Claim Standard &mdash; verifies the presence and amount of a specific input material in a final product through chain-of-custody certification.", points: ["Material content verification", "Chain of custody", "Transaction records"] },
+    rms: { name: "RMS", desc: "A responsible sourcing standard covering traceability and welfare requirements for a raw material in the supply chain.", points: ["Traceability", "Chain of custody", "Supplier verification"] },
+    iso9001: { name: "ISO 9001", desc: "The international standard for quality management systems, focused on consistent product/service quality and continual improvement.", points: ["Quality management system", "Process control", "Customer satisfaction", "Continual improvement"] },
+    iso14001: { name: "ISO 14001", desc: "The international standard for environmental management systems, helping organisations manage environmental responsibilities systematically.", points: ["Environmental policy", "Legal compliance", "Resource use", "Continual improvement"] },
+    iso45001: { name: "ISO 45001", desc: "The international standard for occupational health &amp; safety management systems.", points: ["Hazard identification", "Risk assessment", "Worker participation", "Incident management"] },
+    iso50001: { name: "ISO 50001", desc: "The international standard for energy management systems, supporting systematic improvement of energy performance.", points: ["Energy policy", "Energy use monitoring", "Efficiency targets", "Continual improvement"] },
+    higg_fem: { name: "Higg FEM", desc: "Higg Facility Environmental Module &mdash; a self-assessment tool measuring a facility&rsquo;s environmental performance across energy, water, waste and chemicals.", points: ["Energy &amp; GHG emissions", "Water use", "Waste management", "Chemical management"] },
+    zdhc: { name: "ZDHC Assessment", desc: "Zero Discharge of Hazardous Chemicals &mdash; assesses wastewater and chemical management against ZDHC guidelines.", points: ["Wastewater testing", "Chemical inventory", "MRSL compliance"] },
+    oekotex: { name: "OEKO-TEX", desc: "Certifies textiles and materials tested for harmful substances, helping ensure product safety.", points: ["Harmful substance testing", "Product safety", "Chemical compliance"] },
+    bci: { name: "Better Cotton (BCI)", desc: "Verifies cotton sourced through more sustainable farming practices under the Better Cotton Standard.", points: ["Water stewardship", "Soil health", "Reduced chemical use", "Farmer training"] },
+    ctpat: { name: "C-TPAT", desc: "Customs-Trade Partnership Against Terrorism &mdash; a U.S. supply chain security program covering facility and cargo security.", points: ["Physical security", "Cargo integrity", "Personnel security", "Procedural security"] },
+  };
+
+  function openAuditModal(key){
+    const data = AUDIT_DATA[key];
+    if(!data) return;
+    document.getElementById('amTitle').textContent = data.name;
+    document.getElementById('amDesc').innerHTML = data.desc;
+    document.getElementById('amCtaText').textContent = 'Need ' + data.name + ' audit support?';
+    const tick = '<span class="tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#2E7D46" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>';
+    document.getElementById('amPoints').innerHTML = data.points.map(p => `<li>${tick}<span>${p}</span></li>`).join('');
+    const overlay = document.getElementById('auditModalOverlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAuditModal(){
+    document.getElementById('auditModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeAuditModal();
+  });
+  const crYearEl = document.getElementById('crYear');
+  if(crYearEl) crYearEl.textContent = new Date().getFullYear();
 </script>
 
 </body>
 </html>
-
