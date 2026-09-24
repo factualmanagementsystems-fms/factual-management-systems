@@ -279,36 +279,19 @@
   .sc-footnote{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin-top:20px;padding-top:18px;}
   .sc-footnote p{font-size:11.5px;color:var(--ink-soft);font-style:italic;line-height:1.5;margin:0;max-width:26ch;}
 
-  /* why us */
-  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px;}
-  @media (max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:520px){.why-grid{grid-template-columns:1fr;}}
-  .why-card{
-    border-top:3px solid var(--gold);background:#fff;border-radius:0 0 14px 14px;
-    padding:22px 20px 24px;box-shadow:0 4px 16px rgba(18,56,41,0.05);
-    transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
-  }
-  .why-card:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(18,56,41,0.11);border-color:#2E7D46;}
-  .why-card .icon-box{margin-bottom:16px;}
-  .why-card h4{font-size:14.5px;font-family:'Inter',sans-serif;font-weight:700;color:var(--forest-deep);margin-bottom:9px;line-height:1.3;}
-  .why-card p{font-size:13px;color:var(--ink-soft);line-height:1.6;margin:0;}
-
-  .workflow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px;}
-  @media (max-width:980px){.workflow-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:620px){.workflow-grid{grid-template-columns:1fr;}}
-  .workflow-card{
-    background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;
-    box-shadow:0 4px 18px rgba(18,56,41,0.05);
-    transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
-  }
-  .workflow-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(18,56,41,0.1);border-color:#2E7D46;}
-  .workflow-card .wf-num{
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;color:var(--forest-deep);
-    width:34px;height:34px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;
-    margin-bottom:14px;
-  }
-  .workflow-card h4{font-size:15px;font-weight:700;color:var(--forest-deep);margin:0 0 8px;text-transform:uppercase;letter-spacing:0.02em;}
-  .workflow-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:0;}
+  /* about */
+  .about-tagline{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(18px,2.1vw,21px);color:var(--forest-deep);line-height:1.4;margin-top:14px;max-width:56ch;}
+  .about-grid{display:grid;grid-template-columns:1.3fr 0.85fr;gap:40px;margin-top:30px;align-items:start;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{font-size:14.5px;color:var(--ink-soft);line-height:1.8;margin:0 0 16px;}
+  .about-text p:last-child{margin-bottom:0;}
+  .about-highlights{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 26px;box-shadow:0 4px 20px rgba(18,56,41,0.05);}
+  .about-highlights .icon-box{width:42px;height:42px;border-radius:11px;margin-bottom:20px;}
+  .about-hl-item{padding:14px 0;border-bottom:1px solid var(--line);}
+  .about-hl-item:first-of-type{padding-top:0;}
+  .about-hl-item:last-child{border-bottom:none;padding-bottom:0;}
+  .about-hl-item .k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:400;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:5px;}
+  .about-hl-item .v{font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;color:var(--forest-deep);line-height:1.35;}
 
   .process-v2{background:linear-gradient(135deg,#F7FBF8 0%,#EAF6EE 100%);}
   .process-v2-track{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px;}
@@ -370,6 +353,43 @@
   .cline .v strong{font-weight:700;color:var(--forest-deep);}
   .cline .v a{text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .28s ease, color .28s ease;}
   .cline .v a:hover{border-color:var(--gold);color:var(--forest-deep);}
+
+  /* --- Contact: map + enquiry additions --- */
+  .contact-layout{display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:start;margin-top:8px;}
+  @media (max-width:900px){.contact-layout{grid-template-columns:1fr;}}
+  .contact-map-col{display:flex;flex-direction:column;gap:14px;}
+  .map-wrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(18,56,41,0.06);background:var(--panel);}
+  .map-wrap iframe{width:100%;height:260px;border:0;display:block;filter:saturate(0.92);}
+  .get-directions-btn{width:100%;justify-content:center;display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;}
+  .map-caption{font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin:0;}
+
+  .enquiry-wrap{margin-top:64px;padding-top:56px;border-top:1px solid var(--line);}
+  .enquiry-head{max-width:56ch;}
+  .enquiry-head h3{font-family:'Fraunces',serif;font-weight:600;color:var(--forest-deep);font-size:clamp(22px,2.6vw,28px);margin:0;}
+  .enquiry-head p{color:var(--ink-soft);font-size:14.5px;line-height:1.65;margin:12px 0 0;}
+  .enquiry-form{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-top:32px;}
+  @media (max-width:640px){.enquiry-form{grid-template-columns:1fr;}}
+  .enquiry-form .field{display:flex;flex-direction:column;gap:7px;}
+  .enquiry-form .field.full{grid-column:1 / -1;}
+  .enquiry-form label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:400;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.1em;}
+  .enquiry-form input,
+  .enquiry-form select,
+  .enquiry-form textarea{
+    font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink);
+    background:#fff;border:1px solid var(--line-strong);border-radius:9px;
+    padding:12px 14px;outline:none;width:100%;box-sizing:border-box;
+    transition:border-color .22s ease, box-shadow .22s ease;
+  }
+  .enquiry-form textarea{resize:vertical;min-height:110px;font-family:'Inter',sans-serif;}
+  .enquiry-form input:focus,
+  .enquiry-form select:focus,
+  .enquiry-form textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(176,132,47,0.14);}
+  .enquiry-form select{appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23565448' stroke-width='1.6' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+  .enquiry-form .submit-row{grid-column:1 / -1;margin-top:4px;}
+  .enquiry-form button[type="submit"]{border:none;font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;}
+  .enquiry-note{font-size:12px;color:var(--ink-soft);margin:14px 0 0;line-height:1.5;}
 
   footer{background:var(--forest-deep);color:#AFC6BB;padding:56px 0 30px;}
   .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1.3fr;gap:44px;align-items:start;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.1);}
@@ -557,6 +577,35 @@
       <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 4v5"/></svg><b>15+</b><span>buyer audit programs</span></div>
       <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><b>40+</b><span>legal &amp; environmental reports</span></div>
       <div class="stat"><svg class="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg><b>All Over India</b><span>client coverage</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="divider"><span class="num">ABOUT FACTUAL MANAGEMENT SYSTEMS</span><hr></div>
+    <h2 class="sec-title">About Factual Management Systems</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Factual Management Systems (FMS) is a compliance and audit consultancy supporting manufacturers with legal requirements, social compliance, certification support and buyer audit readiness.</p>
+        <p>FMS was started in June 2014 by Mr. DelipKumar B., Managing Consultant. Since its establishment, the company has focused on providing practical compliance support to manufacturing facilities and helping them prepare for audits, maintain required documentation and address compliance requirements.</p>
+        <p>FMS works closely with companies to understand their requirements, identify compliance gaps, prepare necessary documentation and support them through the audit and corrective action closure process.</p>
+      </div>
+      <div class="about-highlights reveal">
+        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="about-hl-item">
+          <span class="k">Established</span>
+          <span class="v">June 2014</span>
+        </div>
+        <div class="about-hl-item">
+          <span class="k">Managing Consultant</span>
+          <span class="v">Mr. DelipKumar B.</span>
+        </div>
+        <div class="about-hl-item">
+          <span class="k">Focus</span>
+          <span class="v">Compliance &bull; Audits &bull; Certification Support</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -776,46 +825,6 @@
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="divider"><span class="num">HOW WE WORK</span><hr></div>
-    <h2 class="sec-title">How Manufacturers Work With Us</h2>
-    <p class="sec-sub">Our process from the first conversation to closed-out documentation.</p>
-    <div class="workflow-grid">
-      <div class="workflow-card reveal">
-        <div class="wf-num">01</div>
-        <h4>Audit Date Confirmed</h4>
-        <p>We first understand the requirement and fix the audit date according to the client&rsquo;s timeline.</p>
-      </div>
-      <div class="workflow-card reveal">
-        <div class="wf-num">02</div>
-        <h4>Documents Prepared</h4>
-        <p>Once the audit is scheduled, we quickly prepare and organize the required documents, records and evidence.</p>
-      </div>
-      <div class="workflow-card reveal">
-        <div class="wf-num">03</div>
-        <h4>Audit Readiness</h4>
-        <p>We review the factory&rsquo;s compliance status and identify gaps before the audit so the team is properly prepared.</p>
-      </div>
-      <div class="workflow-card reveal">
-        <div class="wf-num">04</div>
-        <h4>Smooth Audit Coordination</h4>
-        <p>We coordinate the audit process and support the factory team throughout the audit to keep the process organized and smooth.</p>
-      </div>
-      <div class="workflow-card reveal">
-        <div class="wf-num">05</div>
-        <h4>Time-Bound Compliance Support</h4>
-        <p>We manage documentation, follow-ups and corrective actions with clear timelines to avoid unnecessary delays.</p>
-      </div>
-      <div class="workflow-card reveal">
-        <div class="wf-num">06</div>
-        <h4>Legal Certificates </h4>
-        <p>We coordinate required legal certificates and compliance documents and provide valid documentation within the agreed timeline.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="process-v2">
   <div class="wrap">
     <div class="divider"><span class="num">OUR PROCESS</span><hr></div>
@@ -876,45 +885,6 @@
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="divider"><span class="num">WHY US</span><hr></div>
-    <h2 class="sec-title">Why work with us</h2>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
-        <h4>Fast Document Preparation</h4>
-        <p>Required documents, records and evidence are organized quickly once an audit is scheduled.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-        <h4>Clear Timeline Management</h4>
-        <p>Every audit date, submission and follow-up is tracked against a clear, agreed timeline.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h4>Audit Readiness Support</h4>
-        <p>Compliance gaps are reviewed and flagged before the audit so the factory team is properly prepared.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div>
-        <h4>Smooth Audit Coordination</h4>
-        <p>We coordinate the audit process and support the factory team throughout, to keep things organized.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg></div>
-        <h4>Legal Compliance Support</h4>
-        <p>Statutory certificates and compliance documents are coordinated alongside your audit requirements.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="icon-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="6" y="4" width="12" height="16" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg></div>
-        <h4>Valid Documentation</h4>
-        <p>Valid documentation is provided within the timeline agreed with you.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="cta-band">
   <div class="wrap">
     <h2 class="sec-title">Preparing for an Audit or Compliance Requirement?</h2>
@@ -931,38 +901,137 @@
     <div class="divider"><span class="num">CONTACT</span><hr></div>
     <h2 class="sec-title">Get in touch</h2>
     <p class="sec-sub">Reach out to discuss an audit, certificate, or test report for a facility anywhere in India.</p>
-    <div class="contact-grid">
+    <div class="contact-layout">
       <div>
-        <div class="cline">
-          <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg></div>
-          <div class="body"><span class="k">Address</span><span class="v">No.100, 2nd Floor RK Towers, Annupparpalayam Pudhur, Tiruppur – 641652</span></div>
-        </div>
-        <div class="cline">
-          <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg></div>
-          <div class="body"><span class="k">Website</span><span class="v"><a href="https://factualmanagamentsystems.com">factualmanagamentsystems.com</a></span></div>
-        </div>
-        <div class="cline">
-          <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6l8 7 8-7"/></svg></div>
-          <div class="body"><span class="k">Email</span><span class="v"><a href="mailto:delipkannan@gmail.com">delipkannan@gmail.com</a></span></div>
+        <div class="contact-grid">
+          <div>
+            <div class="cline">
+              <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg></div>
+              <div class="body"><span class="k">Address</span><span class="v">No.100, 2nd Floor RK Towers, Annupparpalayam Pudhur, Tiruppur – 641652</span></div>
+            </div>
+            <div class="cline">
+              <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18"/></svg></div>
+              <div class="body"><span class="k">Website</span><span class="v"><a href="https://factualmanagamentsystems.com">factualmanagamentsystems.com</a></span></div>
+            </div>
+            <div class="cline">
+              <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6l8 7 8-7"/></svg></div>
+              <div class="body"><span class="k">Email</span><span class="v"><a href="mailto:delipkannan@gmail.com">delipkannan@gmail.com</a></span></div>
+            </div>
+          </div>
+          <div>
+            <div class="cline">
+              <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></div>
+              <div class="body"><span class="k">Managing Consultant</span><span class="v"><strong>B Delipkumar</strong> — <a href="tel:+919965368928">99653 68928</a></span></div>
+            </div>
+            <div class="cline">
+              <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><rect x="6" y="4" width="12" height="16" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg></div>
+              <div class="body"><span class="k">Technical Audit Support</span><span class="v"><strong>Basheer</strong> — <a href="tel:+919626292959">96262 92959</a></span></div>
+            </div>
+            <div class="cline">
+              <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+              <div class="body"><span class="k">Compliance &amp; HR</span><span class="v"><strong>M Pravin</strong> — <a href="tel:+919361079302">93610 79302</a></span></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="cline">
-          <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></div>
-          <div class="body"><span class="k">Managing Consultant</span><span class="v"><strong>B Delipkumar</strong> — <a href="tel:+919965368928">99653 68928</a></span></div>
+
+      <div class="contact-map-col">
+        <div class="map-wrap">
+          <iframe
+            src="https://maps.google.com/maps?q=No.100%2C%202nd%20Floor%20RK%20Towers%2C%20Anuppparpalayam%20Pudur%2C%20Tiruppur%20641652&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            title="Factual Management Systems office location map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Map showing the Factual Management Systems office in Tiruppur">
+          </iframe>
         </div>
-        <div class="cline">
-          <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><rect x="6" y="4" width="12" height="16" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg></div>
-          <div class="body"><span class="k">Technical Audit Support</span><span class="v"><strong>Basheer</strong> — <a href="tel:+919626292959">96262 92959</a></span></div>
-        </div>
-        <div class="cline">
-          <div class="cicon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123829" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <div class="body"><span class="k">Compliance &amp; HR</span><span class="v"><strong>M Pravin</strong> — <a href="tel:+919361079302">93610 79302</a></span></div>
-        </div>
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=No.100%2C%202nd%20Floor%20RK%20Towers%2C%20Anuppparpalayam%20Pudur%2C%20Tiruppur%20641652"
+          target="_blank" rel="noopener"
+          class="btn btn-solid get-directions-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>
+          Get Directions
+        </a>
+        <p class="map-caption">No.100, 2nd Floor RK Towers, Anuppparpalayam Pudur, Tiruppur – 641652</p>
       </div>
+    </div>
+
+    <div class="enquiry-wrap">
+      <div class="enquiry-head">
+        <h3>Send an Enquiry</h3>
+        <p>Tell us about your compliance, audit or certification requirement and our team will get in touch.</p>
+      </div>
+      <form class="enquiry-form" id="enquiryForm" onsubmit="return sendEnquiryMail(event)">
+        <div class="field">
+          <label for="enq_name">Name</label>
+          <input type="text" id="enq_name" name="enq_name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="enq_company">Company Name</label>
+          <input type="text" id="enq_company" name="enq_company" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="enq_phone">Phone Number</label>
+          <input type="tel" id="enq_phone" name="enq_phone" required autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="enq_email">Email</label>
+          <input type="email" id="enq_email" name="enq_email" required autocomplete="email">
+        </div>
+        <div class="field full">
+          <label for="enq_service">Service Required</label>
+          <select id="enq_service" name="enq_service" required>
+            <option value="" disabled selected>Select a service</option>
+            <option value="Social Compliance Audit">Social Compliance Audit</option>
+            <option value="Certification Support">Certification Support</option>
+            <option value="Legal Compliance">Legal Compliance</option>
+            <option value="Environmental Services">Environmental Services</option>
+            <option value="Buyer Audit Support">Buyer Audit Support</option>
+            <option value="Technical Audit Support">Technical Audit Support</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="enq_message">Message</label>
+          <textarea id="enq_message" name="enq_message" placeholder="Tell us briefly about your requirement..."></textarea>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-solid">Send Enquiry</button>
+          <p class="enquiry-note">Clicking "Send Enquiry" opens your email app with these details pre-filled to delipkannan@gmail.com.</p>
+        </div>
+      </form>
     </div>
   </div>
 </section>
+
+<script>
+  function sendEnquiryMail(e){
+    e.preventDefault();
+    var form = document.getElementById('enquiryForm');
+    var name = form.enq_name.value.trim();
+    var company = form.enq_company.value.trim();
+    var phone = form.enq_phone.value.trim();
+    var email = form.enq_email.value.trim();
+    var service = form.enq_service.value.trim();
+    var message = form.enq_message.value.trim();
+
+    var subject = "Website Enquiry - Factual Management Systems";
+    var bodyLines = [
+      "Name: " + name,
+      "Company Name: " + company,
+      "Phone Number: " + phone,
+      "Email: " + email,
+      "Service Required: " + service,
+      "",
+      "Message:",
+      message
+    ];
+    var body = bodyLines.join("\n");
+    var mailtoUrl = "mailto:delipkannan@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    window.location.href = mailtoUrl;
+    return false;
+  }
+</script>
 
 <section id="faq">
   <div class="wrap">
